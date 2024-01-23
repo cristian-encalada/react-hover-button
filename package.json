@@ -1,6 +1,6 @@
 {
   "name": "@devbug/react-hover-button",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "A react component based on React Hooks, compatible with React v18",
   "main": "lib/index.js",
   "homepage": "https://cristian-encalada.github.io/react-hover-button/",
@@ -8,10 +8,13 @@
     "type": "git",
     "url": "https://github.com/cristian-encalada/react-hover-button.git"
   },
+  "files": [
+    "lib"
+  ],
   "scripts": {
-    "start": "npm run build && serve -s examples/dist",
+    "start": "npm run build && serve -s demo/dist",
     "build": "babel src -d lib --copy-files",
-    "deploy": "gh-pages -d examples/dist"
+    "deploy": "gh-pages -d demo/dist"
   },
   "keywords": [
     "react",

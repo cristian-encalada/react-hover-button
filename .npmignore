@@ -4,9 +4,8 @@ yarn.lock
 yarn-error.log
 *.txt
 src
-examples
+demo
 .babelrc
 .gitignore
-jsConfig.json
-webpack.config.js
-webpack.demo.config.js
+*.md
+.vscode

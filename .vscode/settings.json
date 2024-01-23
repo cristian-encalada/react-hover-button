@@ -1,7 +1,10 @@
 {
-  "workbench.colorCustomizations": {
-    "activityBar.background": "#3B1E5F",
-    "titleBar.activeBackground": "#522A85",
-    "titleBar.activeForeground": "#FCFAFD"
+  "tailwindCSS.includeLanguages": {
+    "html": "html",
+    "javascript": "javascript",
+    "css": "css"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
   }
 }

@@ -4,7 +4,6 @@ import "./index.css";
 import "../common/common.css";
 
 function HoverButtonDiagonal({
-  // color = "#000",
   width = "12em",
   height,
   background,
@@ -23,27 +22,26 @@ function HoverButtonDiagonal({
   const [diagonal, setDiagonal] = useState(0);
   const [maskRotateDeg, setDeg] = useState(0);
 
-  // didMount
-  useLayoutEffect(_ => {
-    const { offsetHeight, offsetWidth } = btnEle.current;
-    setDiagonal(
-      Math.sqrt(Math.pow(offsetWidth, 2) + Math.pow(offsetHeight, 2))
-    );
+  // Calculate diagonal and rotation degree
+  useEffect(() => {
+    if (btnEle.current) {
+      const { offsetHeight, offsetWidth } = btnEle.current;
+      setDiagonal(
+        Math.sqrt(Math.pow(offsetWidth, 2) + Math.pow(offsetHeight, 2))
+      );
 
-    setDeg(Math.atan(offsetHeight / offsetWidth) * (-180 / Math.PI));
-  }, []);
+      setDeg(Math.atan(offsetHeight / offsetWidth) * (-180 / Math.PI));
+    }
+  }, [btnEle.current]);
 
-  // didUpdate
-  const mounted = useRef();
+  // Apply styles
   useLayoutEffect(() => {
-    if (!mounted.current) {
-      mounted.current = true;
-    } else {
+    if (btnEle.current) {
       const commonStyleMap = {
         "--maskRotateDeg": maskRotateDeg + "deg",
         "--diagonal": diagonal + "px",
         "--color": maskColor,
-        "--maskColor": maskColor
+        "--maskColor": maskColor,
       };
       for (let prop in commonStyleMap) {
         if (commonStyleMap.hasOwnProperty(prop)) {
@@ -51,40 +49,30 @@ function HoverButtonDiagonal({
         }
       }
     }
-  });
+  }, [diagonal, maskRotateDeg, maskColor]);
 
   const pseudoColor = { color: maskColor ? maskColor : "#ef4654" };
 
   return (
-    <a
+    <button
       className={`hover-button-diagonal ${
         loading && !disabled ? "button--loading" : ""
       } ${disabled ? "not-active" : ""}`}
       style={{
-        background: background ? backgroundColor : "",
+        background: background || "",
         height: getCssValue(height),
         lineHeight: getCssValue(height),
         width: getCssValue(width),
-        // color: maskColor,
-        ...style
+        ...style,
       }}
-      href="javascript:;"
-      ref={btnEle}
       onClick={onClick}
+      ref={btnEle}
       {...params}
     >
-      <div
-        className="btn-before"
-        style={{ ...pseudoColor, ...maskStyle }}
-        ref={beforeBtn}
-      />
+      <div className="btn-before" style={{ ...pseudoColor, ...maskStyle }} ref={beforeBtn} />
       <span>{children}</span>
-      <div
-        className="btn-after"
-        style={{ ...pseudoColor, ...maskStyle }}
-        ref={afterBtn}
-      />
-    </a>
+      <div className="btn-after" style={{ ...pseudoColor, ...maskStyle }} ref={afterBtn} />
+    </button>
   );
 }
 
