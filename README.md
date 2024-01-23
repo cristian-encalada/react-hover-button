@@ -1,42 +1,40 @@
+# React Hover Button
+
+[![Version][npm-image]][npm-url]
+
 ![btn](./btn.gif)
 
 A Button Component of React. Inspired By [Hover/focus effects](https://codepen.io/thebabydino/pen/vQNVQe/")
 
 ## Get Started
 
-### install
+### Install
 
 ```bash
-npm i react-hover-button
+npm i @devbug/react-hover-button
 ```
 
-### usage
+### Usage
 
 ```jsx
-import React, { useEffect, useRef, useState } from "react";
-import { render } from "react-dom";
-import { HoverButtonDiagonal } from "react-hover-button";
+// main.jsx
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { HoverButtonDiagonal } from "@devbug/react-hover-button";
 
-function ButtonDemoList() {
-  const hoverBtn = useRef(null);
-  const [loading, switchLoading] = useState(false);
-  useEffect(_ => {
-    hoverBtn.current.addEventListener(
-      "click",
-      _ => switchLoading(prev => !prev),
-      false
-    );
-  }, []);
-
-  return (
-    <div ref={hoverBtn}>
-      <HoverButtonDiagonal width={300} color="#333" loading={loading}>
-        Hover me!
-      </HoverButtonDiagonal>
-    </div>
-  );
-}
-render(<ButtonDemoList />, document.getElementById("root"));
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+          <HoverButtonDiagonal
+            width="12em"
+            height="2.5em"
+            maskColor="black"
+            background="white"
+            
+          >
+          Hover me!
+          </HoverButtonDiagonal>
+  </React.StrictMode>,
+)
 ```
 
 #### Props List
@@ -52,3 +50,20 @@ render(<ButtonDemoList />, document.getElementById("root"));
   loading = false,
   disabled = false
 ```
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details.
+
+Original work:
+
+- **[react-hover-button](https://github.com/daryl-z/react-hover-button)**
+  - MIT. Copyright (c) 2017 daryl-z
+
+Updated to support React v18:
+- **[@devbug/react-hover-button](https://github.com/cristian-encalada/react-hover-button)**
+  - Copyright (c) 2024 Cristian Encalada
+
+
+[npm-image]: https://img.shields.io/npm/v/@devbug/react-hover-button.svg?style=flat-square
+[npm-url]:   https://www.npmjs.com/package/@devbug/react-hover-button
